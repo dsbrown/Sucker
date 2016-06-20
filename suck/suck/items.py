@@ -11,9 +11,7 @@ import scrapy
 class SuckItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    title = Field()
-    link = Field()
-    desc = Field()
-    price = Field()
-    
-
+    title = scrapy.Field()
+    time  = scrapy.Field()
+    link  = scrapy.Field()
+    key   = scrapy.Field()
