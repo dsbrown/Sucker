@@ -45,15 +45,13 @@ class ClSpider(scrapy.Spider):
         titles = response.xpath("//span[@class='pl']")
         for title in titles:
             item = SuckItem()
-            #print "------------------------------------------------------------------"
             item['title'] = title.xpath('a/span[@id="titletextonly"]/text()').extract()
             item['time'] = title.xpath('time/@datetime').extract()         
             item['link'] = title.xpath('a/@href').extract()
             item['key'] = title.xpath('a/@data-id').extract()           
-            #desc = p.xpath('text()').extract()
-            #print str(title_t), str(link_t), str(time_t), str(key)
-            #print "------------------------------------------------------------------"
             yield item
+
+
 
         # print "------------------------------------------------------------------"
         # print "Title %s"%response.selector.xpath('//title/text()').extract()[0]
