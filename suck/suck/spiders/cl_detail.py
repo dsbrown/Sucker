@@ -6,6 +6,9 @@ from suck.items import SuckItem
 #        'http://seattle.craigslist.org/search/cto',
 #  RSS feed looks like this: http://seattle.craigslist.org/search/cto?format=rss
 # Pages http://seattle.craigslist.org/search/cto?s=0
+#
+# Be sure to set ROBOTSTXT_OBEY = False to download images
+#
 
 class ClDetailSpider(scrapy.Spider):
     name = "cl_detail"
@@ -36,21 +39,18 @@ class ClDetailSpider(scrapy.Spider):
         item['map_longitude']= t.xpath("@data-longitude").extract()
         item['map_latitude'] = t.xpath("@data-latitude").extract()
         item['map_accuracy'] = t.xpath("@data-accuracy").extract()
-
-        # <div class="mapaddress">2741 SE Arcadia Rd</div>
-        print "address: ",
-        print response.selector.xpath('//div[@class="mapbox"]/div[@class="mapaddress"]/text()').extract()
-        print response.selector.xpath('//div[@class="mapbox"]/div[@class="mapaddress"]').extract()
-        print response.selector.xpath('//div[@class="mapbox"]/p[@class="mapaddress"]/small/a/@href').extract() 
         item['map_link'] = response.selector.xpath('//div[@class="mapbox"]/p[@class="mapaddress"]/small/a/@href').extract() 
+        # <div class="mapaddress">2741 SE Arcadia Rd</div>
+        item['address'] = response.selector.xpath('//div[@class="mapbox"]/div[@class="mapaddress"]/text()').extract()
         #<span class="price">$30000</span>
         item['price']  = response.selector.xpath('//span[@class="price"]/text()').extract()
-
         # <head>/<title>1981 El Camino</title>
         item['detail_title'] = response.selector.xpath('//head/title/text()').extract()
-
         #<section id="pagecontainer">/<section class="body">/<section class="userbody">/<section id="postingbody">
         item['content'] =  response.selector.xpath('//section[@id="pagecontainer"]/section[@class="body"]/section[@class="userbody"]/section[@id="postingbody"]/text()').extract()
+        image_url = response.selector.xpath('//head/meta[@property="og:image"]/@content').extract()
+        #print "Image: %s"%image_url
+        item['image_urls'] = image_url
 
         yield item
 

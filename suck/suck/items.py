@@ -31,6 +31,7 @@ class SuckItem(scrapy.Item):
     map_latitude    = scrapy.Field()
     map_accuracy    = scrapy.Field()
     map_link        = scrapy.Field()
+    address         = scrapy.Field()
     content         = scrapy.Field()    
     detail_title    = scrapy.Field()    
     image_urls      = scrapy.Field()
