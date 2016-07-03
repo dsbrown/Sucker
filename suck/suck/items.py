@@ -11,8 +11,8 @@ import scrapy
 class SuckItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    title           = scrapy.Field()
-    time            = scrapy.Field()
+    cl_main_title   = scrapy.Field()
+    posting_time    = scrapy.Field()
     link            = scrapy.Field()
     key             = scrapy.Field()
     price           = scrapy.Field()    
@@ -21,7 +21,7 @@ class SuckItem(scrapy.Item):
     title_status    = scrapy.Field()
     transmission    = scrapy.Field()
     v_type          = scrapy.Field()
-    size            = scrapy.Field()
+    v_size            = scrapy.Field()
     paint_color     = scrapy.Field()
     fuel            = scrapy.Field()
     drive           = scrapy.Field()

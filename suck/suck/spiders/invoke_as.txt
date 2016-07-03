@@ -1,0 +1,1 @@
+scrapy crawl cl_crawler -o cl_items.json

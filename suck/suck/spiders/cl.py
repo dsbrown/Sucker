@@ -46,7 +46,7 @@ class ClSpider(scrapy.Spider):
         for title in titles:
             item = SuckItem()
             item['title'] = title.xpath('a/span[@id="titletextonly"]/text()').extract()
-            item['time'] = title.xpath('time/@datetime').extract()         
+            item['posting_time'] = title.xpath('time/@datetime').extract()         
             item['link'] = title.xpath('a/@href').extract()
             item['key'] = title.xpath('a/@data-id').extract()           
             yield item

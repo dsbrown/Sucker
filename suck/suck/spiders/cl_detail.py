@@ -27,7 +27,7 @@ class ClDetailSpider(scrapy.Spider):
         item['title_status'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "title status")]').re(r'\<b\>(\w+)\<\/b\>')
         item['transmission'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "transmission")]').re(r'\<b\>(\w+)\<\/b\>')
         item['v_type'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "type")]').re(r'\<b\>(\w+)\<\/b\>')
-        item['size'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "size")]').re(r'\<b\>(\w+)\<\/b\>')
+        item['v_size'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "size")]').re(r'\<b\>(\w+)\<\/b\>')
         item['paint_color'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "paint color")]').re(r'\<b\>(\w+)\<\/b\>')
         item['fuel'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "fuel")]').re(r'\<b\>(\w+)\<\/b\>')
         item['drive'] = response.selector.xpath('//p[@class="attrgroup"]/span[contains(., "drive")]').re(r'\<b\>(\w+)\<\/b\>')
